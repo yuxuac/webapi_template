@@ -12,3 +12,4 @@ A dotnet core 5 webapi template.
 6. Background task 
 7. Queue subscription
 8. DB access
+9. Docker support
