@@ -37,6 +37,8 @@ namespace WebApiTemplate.BO
             }
             else
             {
+                if(student.ID == null)
+                    student.ID = this.students.Max(s => s.ID) + 1;
                 students.Add(student);
                 resp.Success = true;
                 resp.Data = student;

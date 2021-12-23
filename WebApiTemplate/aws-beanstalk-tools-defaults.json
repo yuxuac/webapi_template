@@ -1,0 +1,20 @@
+
+{
+    "region" : "ap-southeast-2",
+    "configuration" : "Release",
+    "framework"     : "net5.0",
+    "self-contained" : false,
+    "application"    : "WebApiTemplate",
+    "environment"    : "WebApiTemplate-dev",
+    "enable-xray"    : false,
+    "enhanced-health-type" : "basic",
+    "additional-options"   : "\"aws:autoscaling:launchconfiguration,SecurityGroups\"=\"sg-02244c2edece12ea7\";\"aws:ec2:vpc,Subnets\"=\"subnet-0301d3b6d953f6b8b\"",
+    "solution-stack"       : "64bit Amazon Linux 2 v2.2.9 running .NET Core",
+    "environment-type"     : "SingleInstance",
+    "cname"                : "webapitemplate-dev",
+    "instance-type"        : "t2.micro",
+    "key-pair"             : "webapi_dev_ec2",
+    "instance-profile"     : "aws-elasticbeanstalk-ec2-role",
+    "service-role"         : "aws-elasticbeanstalk-service-role",
+    "proxy-server"         : "nginx"
+}
