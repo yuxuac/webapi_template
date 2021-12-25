@@ -5,9 +5,18 @@ A dotnet core 5 webapi template.
 1. CRUD
 2. Logging
 3. Swagger
-
+4. Authentication: https://www.c-sharpcorner.com/article/authentication-and-authorization-in-asp-net-core-web-api-with-json-web-tokens/
+	1) In MSSQL Server Management Studio
+	'''
+	-- Create database:
+	CREATE DATABASE [WebApiTemplate1]
+	GO
+	'''
+	2) In Package Management Console
+	'''
+	update-database
+	'''
 # todo
-4. Authentication 
 5. Authorization 
 6. Background task 
 7. Queue subscription

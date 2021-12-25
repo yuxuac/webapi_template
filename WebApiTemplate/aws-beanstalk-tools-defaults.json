@@ -8,7 +8,7 @@
     "environment"    : "WebApiTemplate-dev",
     "enable-xray"    : false,
     "enhanced-health-type" : "basic",
-    "additional-options"   : "\"aws:autoscaling:launchconfiguration,SecurityGroups\"=\"sg-02244c2edece12ea7\";\"aws:ec2:vpc,Subnets\"=\"subnet-0301d3b6d953f6b8b\"",
+    "additional-options"   : "",
     "solution-stack"       : "64bit Amazon Linux 2 v2.2.9 running .NET Core",
     "environment-type"     : "SingleInstance",
     "cname"                : "webapitemplate-dev",

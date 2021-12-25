@@ -16,12 +16,12 @@ namespace WebApiTemplate.BO
 
     public class StudentsBO : IStudentsBO
     {
-        private readonly List<Student> students = new List<Student>();
+        private readonly Dictionary<int, Student> students = new Dictionary<int, Student>();
         private readonly ILogger logger;
 
         public StudentsBO(ILogger<StudentsBO> logger)
         {
-            this.students = new List<Student>();
+            this.students = new Dictionary<int, Student>();
             this.logger = logger;
         }
 
@@ -29,7 +29,7 @@ namespace WebApiTemplate.BO
         {
             ApiResponse resp = new ApiResponse();
 
-            if (students.Any(stu => stu.ID == student.ID))
+            if (student.ID != null && students.ContainsKey(student.ID.Value))
             {
                 string logMsg = $"student with id:{student.ID} already exists.";
                 resp.Description = logMsg;
@@ -38,10 +38,11 @@ namespace WebApiTemplate.BO
             else
             {
                 if(student.ID == null)
-                    student.ID = this.students.Max(s => s.ID) + 1;
-                students.Add(student);
+                    student.ID = this.students.Keys.Any() ? this.students.Keys.Max() + 1 : 1;
+                students.Add(student.ID.Value, student);
                 resp.Success = true;
                 resp.Data = student;
+                resp.Description = "add done";
             }
             return resp;
         }
@@ -49,17 +50,22 @@ namespace WebApiTemplate.BO
         public ApiResponse RemoveAStudent(int id)
         {
             ApiResponse resp = new ApiResponse();
-            Student stu = students.Where(s => s.ID == id).FirstOrDefault();
-            if (stu != null)
+            if (this.students.ContainsKey(id))
             {
-                students.Remove(stu);
-                resp = new ApiResponse() { Data = stu, Success = true, Description = $"delete done" };
+                var stu = this.students[id];
+                students.Remove(id);
+                resp = new ApiResponse() 
+                { 
+                    Data = stu, 
+                    Success = true, 
+                    Description = $"delete done" 
+                };
             }
             else
             {
                 resp.Description = "no student to delete";
                 resp.Success = false;
-                resp.Data = stu;
+                resp.Data = null;
             }
             return resp;
         }
@@ -68,15 +74,14 @@ namespace WebApiTemplate.BO
         {
             ApiResponse resp = new ApiResponse();
 
-            Student stu = students.Where(s => s.ID == id).FirstOrDefault();
-
-            if (stu == null)
+            if (!students.ContainsKey(id))
             {
                 resp.Success = false;
                 resp.Description = $"student with id:{id} doesn't exists.";
             }
             else
             {
+                var stu = this.students[id];
                 stu.Name = student.Name;
                 stu.Age = student.Age;
                 stu.Gender = stu.Gender;
@@ -91,15 +96,14 @@ namespace WebApiTemplate.BO
 
         public ApiResponse GetAllStudents()
         {
-            return new ApiResponse() { Data = students, Success = true };
+            return new ApiResponse() { Data = students, Success = true, Description = "get all done" };
         }
 
         public ApiResponse GetStudent(int id)
         {
-            Student stu = students.Where(stu => stu.ID == id).FirstOrDefault();
-            if (stu == null)
+            if (!this.students.ContainsKey(id))
                 return new ApiResponse() { Description = "no data", Success = false };
-            return new ApiResponse() { Data = stu, Success = true };
+            return new ApiResponse() { Data = this.students[id], Success = true, Description = "get done" };
         }
     }
 }
