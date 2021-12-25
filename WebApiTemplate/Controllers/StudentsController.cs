@@ -5,6 +5,7 @@ using WebApiTemplate.Models;
 
 namespace WebApiTemplate.Controllers
 {
+    [Authorize(Roles = "StudentAdmin")]
     [Route("v1/[controller]")]
     [ApiController]
     public class StudentsController : ControllerBase

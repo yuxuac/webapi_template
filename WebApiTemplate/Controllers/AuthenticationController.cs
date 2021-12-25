@@ -111,11 +111,14 @@ namespace WebApiTemplate.Controllers
                 await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
             if (!await roleManager.RoleExistsAsync(UserRoles.User))
                 await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+            if (!await roleManager.RoleExistsAsync(UserRoles.StudentAdmin))
+                await roleManager.CreateAsync(new IdentityRole(UserRoles.StudentAdmin));
 
             if (await roleManager.RoleExistsAsync(UserRoles.Admin))
-            {
                 await userManager.AddToRoleAsync(user, UserRoles.Admin);
-            }
+            if (await roleManager.RoleExistsAsync(UserRoles.StudentAdmin))
+                await userManager.AddToRoleAsync(user, UserRoles.StudentAdmin);
+
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
         }

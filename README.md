@@ -16,8 +16,9 @@ A dotnet core 5 webapi template.
 	'''
 	update-database
 	'''
-# todo
 5. Authorization 
+
+# todo
 6. Background task 
 7. Queue subscription
 8. DB access

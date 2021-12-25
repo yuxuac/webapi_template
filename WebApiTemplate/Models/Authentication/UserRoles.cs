@@ -9,6 +9,7 @@ namespace WebApiTemplate.Models.Authentication
     public static class UserRoles
     {
         public const string Admin = "Admin";
+        public const string StudentAdmin = "StudentAdmin";
         public const string User = "User";
     }
 }

@@ -84,7 +84,7 @@ namespace WebApiTemplate.BO
                 var stu = this.students[id];
                 stu.Name = student.Name;
                 stu.Age = student.Age;
-                stu.Gender = stu.Gender;
+                stu.Gender = student.Gender;
 
                 resp.Success = true;
                 resp.Data = stu;
