@@ -21,6 +21,7 @@ A dotnet core 5 webapi template.
 	```
 	# docker build -t webapitemplate --progress plain --no-cache .
 	# docker run -d -p 8080:80--name mywebapi webapitemplate 
+	# docker image url: https://hub.docker.com/r/yuxuac/webapitemplate/tags
 	```
 
 # todo
