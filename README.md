@@ -17,9 +17,13 @@ A dotnet core 5 webapi template.
 	update-database
 	'''
 5. Authorization 
+9. Docker support
+	```
+	# docker build -t webapitemplate --progress plain --no-cache .
+	# docker run -d -p 8080:80--name mywebapi webapitemplate 
+	```
 
 # todo
 6. Background task 
 7. Queue subscription
 8. DB access
-9. Docker support
